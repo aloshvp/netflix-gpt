@@ -6,10 +6,10 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const name = useRef(null);
@@ -40,14 +40,12 @@ const Login = () => {
                     const user = userCredential.user;
                     updateProfile(user, {
                         displayName: name.current.value,
-                        photoURL: "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
+                        photoURL: USER_AVATAR
                     }).then(() => {
                         const { uid, email, displayName, photoURL } = auth.currentUser;
                         dispatch(addUser({
                             uid: uid, email: email, displayName: displayName, photoURL: photoURL,
                         }));
-                        console.log(user);
-                        navigate("/browse");
                     }).catch((error) => {
                         setErrorMessage(error.message);
                     });
@@ -67,8 +65,6 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    console.log(user);
-                    navigate("/browse");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
