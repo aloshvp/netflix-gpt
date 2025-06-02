@@ -3,10 +3,9 @@ import Header from './Header';
 import { checkValidateData } from '../utils/validate';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import { USER_AVATAR } from '../utils/constants';
+import { BG_URL, USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
 
@@ -80,7 +79,7 @@ const Login = () => {
         <div className="relative h-screen">
             {/* Background Image */}
             <img
-                src="https://assets.nflxext.com/ffe/siteui/vlv3/914ad279-199e-4095-9c10-2409dc9e5e1b/web/IN-en-20250519-TRIFECTA-perspective_8f1ca896-9e49-4a4e-90f0-22fc49650bd9_large.jpg"
+                src={BG_URL}
                 alt="Background"
                 className="absolute inset-0 w-full h-full object-cover z-0"
             />
